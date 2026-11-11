@@ -77,12 +77,12 @@
 
 Выполните следующую команду для начала установки:
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/eGamesAPI/remnawave-reverse-proxy/refs/heads/main/install_remnawave.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/rootgleb/remnawave-reverse-proxy/refs/heads/main/install_remnawave.sh)
 ```
 
 Если GitHub недоступен, используйте зеркало на jsDelivr:
 ```bash
-bash <(curl -Ls https://cdn.jsdelivr.net/gh/eGamesAPI/remnawave-reverse-proxy@main/install_remnawave.sh)
+bash <(curl -Ls https://cdn.jsdelivr.net/gh/rootgleb/remnawave-reverse-proxy@main/install_remnawave.sh)
 ```
 
 <p align="center">
