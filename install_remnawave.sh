@@ -1,5 +1,5 @@
 #!/bin/bash
-SCRIPT_VERSION="3.8.4"
+SCRIPT_VERSION="3.8.4-xray443"
 UPDATE_AVAILABLE=false
 DIR_REMNAWAVE="/usr/local/remnawave_reverse/"
 LANG_FILE="${DIR_REMNAWAVE}selected_language"
@@ -7,7 +7,8 @@ LANG_FILE="${DIR_REMNAWAVE}selected_language"
 # Where this script and its modules/languages are downloaded from.
 # Flip SOURCE_BRANCH to "dev" to point every download at the development
 # branch at once — no other URL in this file mentions the branch.
-SOURCE_REPO="eGamesAPI/remnawave-reverse-proxy"
+# Fork: replace with your GitHub user/repo before publishing.
+SOURCE_REPO="${REMNA_SOURCE_REPO:-YOUR_GITHUB_USER/remnawave-reverse-proxy}"
 SOURCE_BRANCH="main"
 SOURCE_BASE_URL="https://raw.githubusercontent.com/${SOURCE_REPO}/refs/heads/${SOURCE_BRANCH}"
 

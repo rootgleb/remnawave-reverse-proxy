@@ -730,8 +730,11 @@ configure_certbot_renewal_hooks() {
         # no commas and no hash signs inside.
         echo "pre_hook = /usr/bin/docker stop remnawave-nginx; if [ -x /usr/sbin/ufw ] && ! /usr/sbin/ufw status | grep -Eq '^80(/tcp)?[[:space:]]+ALLOW( IN)?[[:space:]]+Anywhere'; then /usr/sbin/ufw allow 80/tcp comment 'HTTP for ACME challenge' >/dev/null && touch /run/remnawave-acme-port80; fi" >> "$renewal_conf"
         echo "post_hook = /usr/bin/docker start remnawave-nginx; if [ -f /run/remnawave-acme-port80 ]; then /usr/sbin/ufw delete allow 80/tcp >/dev/null; rm -f /run/remnawave-acme-port80; fi" >> "$renewal_conf"
+        # Fork: Hysteria2 inside remnanode serves the same certificate and
+        # reads it only at start, so a renewed one needs an xray restart too.
+        echo "renew_hook = /usr/bin/docker restart remnanode >/dev/null 2>&1; /usr/bin/docker start remnawave-nginx >/dev/null 2>&1; /bin/true" >> "$renewal_conf"
     else
-        echo "renew_hook = /usr/bin/docker restart remnawave-nginx" >> "$renewal_conf"
+        echo "renew_hook = /usr/bin/docker restart remnawave-nginx; /usr/bin/docker restart remnanode >/dev/null 2>&1; /bin/true" >> "$renewal_conf"
     fi
 }
 
@@ -1006,7 +1009,7 @@ handle_certificates() {
     # was actually renewed: the certs are bind-mounted into the container
     # by file, so without a restart it keeps serving the old inode until
     # it eventually expires.
-    local renew_hook="docker restart remnawave-nginx remnawave-caddy 2>/dev/null || true"
+    local renew_hook="docker restart remnawave-nginx remnawave-caddy remnanode 2>/dev/null || true"
     # HTTP-01 lineages open port 80 in their own pre/post hooks (see
     # configure_certbot_renewal_hooks), so one line serves every method
     cron_command="/usr/bin/certbot renew --quiet --deploy-hook \"$renew_hook\""
