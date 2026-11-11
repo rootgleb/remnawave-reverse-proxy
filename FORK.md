@@ -24,8 +24,7 @@
 - хуки продления сертификата перезапускают и remnanode;
 - открывается `443/udp`.
 
-## Публикация
-1. Создайте пустой репозиторий на GitHub и запушьте ветку как `main`.
-2. В `install_remnawave.sh` замените `YOUR_GITHUB_USER` на свой логин
-   (или задайте при запуске `REMNA_SOURCE_REPO=user/repo`).
-3. Установка: `bash <(curl -Ls https://raw.githubusercontent.com/<user>/remnawave-reverse-proxy/refs/heads/main/install_remnawave.sh)`
+## Установка
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/rootgleb/remnawave-reverse-proxy/refs/heads/main/install_remnawave.sh)
+```

@@ -8,7 +8,7 @@ LANG_FILE="${DIR_REMNAWAVE}selected_language"
 # Flip SOURCE_BRANCH to "dev" to point every download at the development
 # branch at once — no other URL in this file mentions the branch.
 # Fork: replace with your GitHub user/repo before publishing.
-SOURCE_REPO="${REMNA_SOURCE_REPO:-YOUR_GITHUB_USER/remnawave-reverse-proxy}"
+SOURCE_REPO="${REMNA_SOURCE_REPO:-rootgleb/remnawave-reverse-proxy}"
 SOURCE_BRANCH="main"
 SOURCE_BASE_URL="https://raw.githubusercontent.com/${SOURCE_REPO}/refs/heads/${SOURCE_BRANCH}"
 
